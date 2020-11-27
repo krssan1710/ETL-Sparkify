@@ -8,38 +8,32 @@ time_table_drop = "DROP TABLE IF EXISTS  time;"
 
 # CREATE TABLES
 
-songplay_table_create = ("CREATE TABLE IF NOT EXISTS songplays(songplay_id bigint,starttime bigint,user_id bigint,level text,song_id bigint,artist_id bigint,session_id bigint,location text,user_agent text)")
+songplay_table_create = ("CREATE TABLE IF NOT EXISTS songplays(songplay_id SERIAL PRIMARY KEY,starttime BIGINT,user_id BIGINT,level TEXT,song_id TEXT,artist_id TEXT,session_id BIGINT,location TEXT,user_agent TEXT)")
 
-user_table_create = ("CREATE TABLE IF NOT EXISTS users(user_id bigint,first_name text,last_name text,gender char,level text);")
+user_table_create = ("CREATE TABLE IF NOT EXISTS users(user_id BIGINT PRIMARY KEY,first_name TEXT,last_name TEXT,gender char,level TEXT);")
 
-song_table_create = ("CREATE TABLE IF NOT EXISTS songs(song_id bigint,title text,artist_id bigint,year int,duration int);")
+song_table_create = ("CREATE TABLE IF NOT EXISTS songs(song_id TEXT PRIMARY KEY,title TEXT,artist_id TEXT,year INT,duration INT);")
 
-artist_table_create = ("CREATE TABLE IF NOT EXISTS artists(artist_id bigint,name text,location text,latitude int,longitude int);")
+artist_table_create = ("CREATE TABLE IF NOT EXISTS artists(artist_id TEXT PRIMARY KEY,name TEXT,location TEXT,latitude INT,longitude INT);")
 
-time_table_create = ("CREATE TABLE IF NOT EXISTS songplays(starttime bigint,hour int,day int,week int,month int,year int,weekday int);")
+time_table_create = ("CREATE TABLE IF NOT EXISTS time(starttime BIGINT PRIMARY KEY,hour INT,day INT,week INT,month INT,year INT,weekday INT);")
 
 # INSERT RECORDS
 
-songplay_table_insert = ("""
-""")
+songplay_table_insert = ("""INSERT INTO songplays (starttime,user_id,level,song_id,artist_id,session_id,location,user_agent) 
+VALUES (%s,%s,%s,%s,%s,%s,%s,%s) """)
 
-user_table_insert = ("""
-""")
+user_table_insert = ("INSERT INTO users (user_id,first_name,last_name,gender,level) VALUES (%s,%s,%s,%s,%s) ON CONFLICT(user_id) DO UPDATE SET first_name=EXCLUDED.first_name,last_name=EXCLUDED.last_name,gender=EXCLUDED.gender,level=EXCLUDED.level")
 
-song_table_insert = ("""
-""")
+song_table_insert = ("INSERT INTO songs (song_id,title,artist_id,year,duration) VALUES (%s,%s,%s,%s,%s) ON CONFLICT(song_id) DO UPDATE SET title=EXCLUDED.title,artist_id=EXCLUDED.artist_id,year=EXCLUDED.year,duration=EXCLUDED.duration")
 
-artist_table_insert = ("""
-""")
+artist_table_insert = ("INSERT INTO artists (artist_id,name,location,latitude,longitude) VALUES (%s,%s,%s,%s,%s) ON CONFLICT(artist_id) DO UPDATE SET name=EXCLUDED.name,location=EXCLUDED.location,latitude=EXCLUDED.latitude,longitude=EXCLUDED.longitude")
 
-
-time_table_insert = ("""
-""")
+time_table_insert = ("INSERT INTO time (starttime,hour,day,week,month,year,weekday) VALUES (%s,%s,%s,%s,%s,%s,%s) ON CONFLICT(starttime) DO UPDATE SET hour=EXCLUDED.hour,day=EXCLUDED.day,week=EXCLUDED.week,month=EXCLUDED.month,year=EXCLUDED.year,weekday=EXCLUDED.weekday")
 
 # FIND SONGS
 
-song_select = ("""
-""")
+song_select = ("SELECT song_id,songs.artist_id FROM songs INNER JOIN artists ON songs.artist_id=artists.artist_id WHERE title=%s AND duration=%s AND name=%s")
 
 # QUERY LISTS
 
