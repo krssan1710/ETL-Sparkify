@@ -1,4 +1,4 @@
-# Sparkify Datawarehouse Project
+# Sparkify Datawarehouse Project (UDACITY Data Engineering)
 
 ## Introduction
 
