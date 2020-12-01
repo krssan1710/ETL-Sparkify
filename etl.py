@@ -167,6 +167,7 @@ def main():
     """
     conn = psycopg2.connect("host=localhost dbname=sparkifydb user=dataengguser password=learn@89")
     cur = conn.cursor()
+    
     #process song files
     process_data(cur, conn, filepath='D:\\git\\Sparkify-ETL-Repo\\data\\song_data\\', func=process_song_file)
         

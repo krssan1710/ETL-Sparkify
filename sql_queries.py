@@ -130,8 +130,8 @@ month,
 year,
 weekday
 ) 
-VALUES (%s,%s,%s,%s,%s,%s,%s) 
-ON CONFLICT(starttime) DO NOTHING;
+VALUES (%s,%s,%s,%s,%s,%s,%s)
+ON CONFLICT DO NOTHING;
 """)
 
 # TRUNCATE TABLES
