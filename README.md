@@ -37,8 +37,7 @@ This file is used to define SQL queries to ***DROP, CREATE, INSERT, TRUNCATE and
 
 This file creates the database, named ***sparkifydb*** and creates all the target tables. Tables are created in a ***STAR SCHEMA*** in the structure shown below:
 
-![Sparkify-ERD](D:\git\Sparkify-ETL-Repo\Sparkify_ERD.png)
-
+![Sparkify-ERD](\Sparkify_ERD.png)
 
 This file sets up the target environment. So if the project is being executed for the first time, this file must be the first to be executed.
 
